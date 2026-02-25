@@ -54,8 +54,8 @@ const Navbar = () => {
           {/* Logo */}
           <a href="#home" onClick={(e) => { e.preventDefault(); scrollToSection("home"); }} className="flex items-center gap-2 cursor-pointer">
             <img src={schoolLogo} alt="Bornwell Academy Logo" className="h-12 w-12 rounded-full object-cover md:h-14 md:w-14" />
-            <div className="hidden sm:block">
-              <h1 className="font-heading text-lg font-bold leading-tight text-primary md:text-xl">Bornwell Academy</h1>
+            <div>
+              <h1 className="font-heading text-sm font-bold leading-tight text-primary md:text-lg">Bornwell Academy</h1>
               <p className="text-xs text-muted-foreground">For Quality Education & Excellence</p>
             </div>
           </a>
