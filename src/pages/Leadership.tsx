@@ -1,4 +1,4 @@
-import founderImg from "@/assets/founder.jpg";
+import founderImg from "@/assets/Founder of BW.jpg";
 import principalImg from "@/assets/principal.jpg";
 import chairladyImg from "@/assets/chairlady.jpg";
 
