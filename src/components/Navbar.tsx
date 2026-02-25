@@ -66,11 +66,7 @@ const Navbar = () => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`flex items-center gap-2 rounded-lg px-4 py-2 font-body text-sm font-medium transition-colors cursor-pointer ${
-                  isActive(item.id)
-                    ? "bg-primary text-primary-foreground"
-                    : "text-foreground hover:bg-muted"
-                }`}
+                className="flex items-center gap-2 rounded-lg px-4 py-2 font-body text-sm font-medium transition-colors cursor-pointer"
               >
                 <item.icon className="h-4 w-4" />
                 {item.title}
