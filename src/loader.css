@@ -1,0 +1,19 @@
+/* Fallback loader styles - primary styles are in index.html */
+
+#loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0f1c24 0%, #1a3342 40%, #1e4a4a 100%);
+  transition:
+    opacity 0.8s ease-out,
+    visibility 0.8s ease-out;
+}
+
+#loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
