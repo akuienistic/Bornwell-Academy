@@ -24,7 +24,8 @@ const Contact = () => {
     setForm({ name: "", email: "", phone: "", message: "" });
   };
 
-  const inputClass = "w-full rounded-lg border border-input bg-background px-4 py-3 pl-11 font-body text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring";
+  const inputClass =
+    "w-full rounded-lg border border-input bg-background px-4 py-3 pl-11 font-body text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring";
 
   return (
     <>
@@ -45,21 +46,27 @@ const Contact = () => {
               <h2 className="mb-6 font-heading text-2xl font-bold text-foreground">Get in Touch</h2>
               <div className="space-y-5">
                 <div className="flex items-start gap-4 rounded-xl border border-border bg-card p-5 shadow-sm">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground"><Phone className="h-5 w-5" /></div>
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                    <Phone className="h-5 w-5" />
+                  </div>
                   <div>
                     <p className="font-medium text-foreground">Phone</p>
-                    <p className="text-sm text-muted-foreground">+211 912 345 678</p>
+                    <p className="text-sm text-muted-foreground">+211 911 315 000</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4 rounded-xl border border-border bg-card p-5 shadow-sm">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary text-secondary-foreground"><Mail className="h-5 w-5" /></div>
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary text-secondary-foreground">
+                    <Mail className="h-5 w-5" />
+                  </div>
                   <div>
                     <p className="font-medium text-foreground">Email</p>
-                    <p className="text-sm text-muted-foreground">info@bornwellacademy.com</p>
+                    <p className="text-sm text-muted-foreground">bornwellacademy2023@gmail.com</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4 rounded-xl border border-border bg-card p-5 shadow-sm">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gold text-gold-foreground"><MapPin className="h-5 w-5" /></div>
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gold text-gold-foreground">
+                    <MapPin className="h-5 w-5" />
+                  </div>
                   <div>
                     <p className="font-medium text-foreground">Location</p>
                     <p className="text-sm text-muted-foreground">Juba, South Sudan</p>
@@ -69,7 +76,7 @@ const Contact = () => {
 
               {/* WhatsApp */}
               <a
-                href="https://wa.me/211912345678"
+                href="https://wa.me/211913113000"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-6 inline-flex items-center gap-2 rounded-lg bg-secondary px-6 py-3 font-body font-semibold text-secondary-foreground transition-all hover:brightness-110"
@@ -100,31 +107,64 @@ const Contact = () => {
                   <label className="mb-1 block font-body text-sm font-medium text-foreground">Your Name *</label>
                   <div className="relative">
                     <User className="absolute left-3 top-3.5 h-4 w-4 text-muted-foreground" />
-                    <input name="name" value={form.name} onChange={handleChange} placeholder="Your full name" className={inputClass} maxLength={100} />
+                    <input
+                      name="name"
+                      value={form.name}
+                      onChange={handleChange}
+                      placeholder="Your full name"
+                      className={inputClass}
+                      maxLength={100}
+                    />
                   </div>
                 </div>
                 <div>
                   <label className="mb-1 block font-body text-sm font-medium text-foreground">Email *</label>
                   <div className="relative">
                     <Mail className="absolute left-3 top-3.5 h-4 w-4 text-muted-foreground" />
-                    <input type="email" name="email" value={form.email} onChange={handleChange} placeholder="email@example.com" className={inputClass} maxLength={255} />
+                    <input
+                      type="email"
+                      name="email"
+                      value={form.email}
+                      onChange={handleChange}
+                      placeholder="email@example.com"
+                      className={inputClass}
+                      maxLength={255}
+                    />
                   </div>
                 </div>
                 <div>
                   <label className="mb-1 block font-body text-sm font-medium text-foreground">Phone (Optional)</label>
                   <div className="relative">
                     <Phone className="absolute left-3 top-3.5 h-4 w-4 text-muted-foreground" />
-                    <input name="phone" value={form.phone} onChange={handleChange} placeholder="+211 xxx xxx xxx" className={inputClass} maxLength={20} />
+                    <input
+                      name="phone"
+                      value={form.phone}
+                      onChange={handleChange}
+                      placeholder="+211 xxx xxx xxx"
+                      className={inputClass}
+                      maxLength={20}
+                    />
                   </div>
                 </div>
                 <div>
                   <label className="mb-1 block font-body text-sm font-medium text-foreground">Message *</label>
                   <div className="relative">
                     <MessageSquare className="absolute left-3 top-3.5 h-4 w-4 text-muted-foreground" />
-                    <textarea name="message" value={form.message} onChange={handleChange} placeholder="How can we help you?" rows={4} className={inputClass + " resize-none"} maxLength={1000} />
+                    <textarea
+                      name="message"
+                      value={form.message}
+                      onChange={handleChange}
+                      placeholder="How can we help you?"
+                      rows={4}
+                      className={inputClass + " resize-none"}
+                      maxLength={1000}
+                    />
                   </div>
                 </div>
-                <button type="submit" className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3.5 font-body font-semibold text-primary-foreground shadow-md transition-all hover:shadow-lg hover:brightness-110">
+                <button
+                  type="submit"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3.5 font-body font-semibold text-primary-foreground shadow-md transition-all hover:shadow-lg hover:brightness-110"
+                >
                   <Send className="h-5 w-5" /> Send Message
                 </button>
               </form>

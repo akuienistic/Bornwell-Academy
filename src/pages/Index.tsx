@@ -22,6 +22,8 @@ import {
   ClipboardList,
   School,
   FileText,
+  AlertCircle,
+  AlertTriangle,
 } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
@@ -158,17 +160,39 @@ const Index = () => {
     const missing = required.filter((f) => !regForm[f as keyof typeof regForm].trim());
     if (missing.length > 0) {
       toast({
-        title: "Missing Fields",
+        title: (
+          <div className="flex items-center gap-2">
+            <AlertTriangle className="h-4 w-4" />
+            <span>Missing Fields</span>
+          </div>
+        ),
         description: "Please fill in all required fields.",
         variant: "destructive",
       });
       return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(regForm.email)) {
-      toast({ title: "Invalid Email", description: "Please enter a valid email address.", variant: "destructive" });
+      toast({ 
+        title: (
+          <div className="flex items-center gap-2">
+            <AlertCircle className="h-4 w-4" />
+            <span>Invalid Email</span>
+          </div>
+        ),
+        description: "Please enter a valid email address.", 
+        variant: "destructive" 
+      });
       return;
     }
-    toast({ title: "Registration Submitted!", description: "Thank you! We will contact you shortly." });
+    toast({ 
+      title: (
+        <div className="flex items-center gap-2">
+          <CheckCircle2 className="h-4 w-4 text-green-500" />
+          <span>Registration Submitted!</span>
+        </div>
+      ),
+      description: "Thank you! We will contact you shortly." 
+    });
     setRegForm({
       studentName: "",
       dob: "",
@@ -186,14 +210,40 @@ const Index = () => {
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!contactForm.name.trim() || !contactForm.email.trim() || !contactForm.message.trim()) {
-      toast({ title: "Missing Fields", description: "Please fill in all required fields.", variant: "destructive" });
+      toast({ 
+        title: (
+          <div className="flex items-center gap-2">
+            <AlertTriangle className="h-4 w-4" />
+            <span>Missing Fields</span>
+          </div>
+        ),
+        description: "Please fill in all required fields.", 
+        variant: "destructive" 
+      });
       return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactForm.email)) {
-      toast({ title: "Invalid Email", description: "Please enter a valid email address.", variant: "destructive" });
+      toast({ 
+        title: (
+          <div className="flex items-center gap-2">
+            <AlertCircle className="h-4 w-4" />
+            <span>Invalid Email</span>
+          </div>
+        ),
+        description: "Please enter a valid email address.", 
+        variant: "destructive" 
+      });
       return;
     }
-    toast({ title: "Message Sent!", description: "Thank you for contacting us. We'll respond shortly." });
+    toast({ 
+      title: (
+        <div className="flex items-center gap-2">
+          <Send className="h-4 w-4 text-green-500" />
+          <span>Message Sent!</span>
+        </div>
+      ),
+      description: "Thank you for contacting us. We'll respond shortly." 
+    });
     setContactForm({ name: "", email: "", phone: "", message: "" });
   };
 
@@ -243,7 +293,7 @@ const Index = () => {
               {/* Decorative elements */}
               <div className="absolute -left-4 -top-4 h-24 w-24 rounded-full bg-gold/20 blur-2xl" />
               <div className="absolute -right-4 -bottom-4 h-32 w-32 rounded-full bg-secondary/30 blur-2xl" />
-              
+
               {/* Main image container with decorative border */}
               <div className="relative rounded-2xl border-4 border-gold/30 p-1 shadow-2xl">
                 <img
@@ -258,7 +308,7 @@ const Index = () => {
                   <p className="text-sm text-primary-foreground/80">Building tomorrow's leaders today</p>
                 </div>
               </div>
-              
+
               {/* Floating stat card */}
               <div className="absolute -bottom-4 -right-4 rounded-xl bg-card p-4 shadow-lg border border-gold/20 md:-bottom-6 md:-right-6">
                 <div className="flex items-center gap-2">
@@ -271,10 +321,10 @@ const Index = () => {
                   </div>
                 </div>
               </div>
-              
+
               {/* Floating badge */}
               <div className="absolute -right-2 top-4 rounded-lg bg-gold px-3 py-2 shadow-lg md:-right-4">
-                <p className="text-xs font-bold text-gold-foreground">Est. 2015</p>
+                <p className="text-xs font-bold text-gold-foreground">Est. 2023</p>
               </div>
             </div>
           </div>
@@ -335,7 +385,9 @@ const Index = () => {
                 <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-secondary text-secondary-foreground">
                   <h.icon className="h-7 w-7" />
                 </div>
-                <Badge variant="outline" className="mb-2 text-xs">{h.badge}</Badge>
+                <Badge variant="outline" className="mb-2 text-xs">
+                  {h.badge}
+                </Badge>
                 <h3 className="mb-2 font-heading text-lg font-bold text-foreground">{h.title}</h3>
                 <p className="text-sm text-muted-foreground">{h.desc}</p>
               </div>
@@ -439,7 +491,9 @@ const Index = () => {
       <section id="about" className="bg-hero py-16 md:py-24">
         <div className="container-main text-center">
           <Badge className="mb-4 bg-gold/20 text-gold hover:bg-gold/30">About Us</Badge>
-          <h2 className="mb-4 font-heading text-4xl font-bold text-primary-foreground md:text-5xl">About Bornwell Academy</h2>
+          <h2 className="mb-4 font-heading text-4xl font-bold text-primary-foreground md:text-5xl">
+            About Bornwell Academy
+          </h2>
           <p className="mx-auto max-w-2xl text-lg text-primary-foreground/80">
             A legacy of quality education, discipline, and excellence in Juba, South Sudan.
           </p>
@@ -454,10 +508,14 @@ const Index = () => {
               <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/20">Our Story</Badge>
               <h2 className="mb-4 font-heading text-3xl font-bold text-foreground">History & Foundation</h2>
               <p className="mb-4 text-muted-foreground">
-                Bornwell Academy was founded with a vision to provide quality education to the children of South Sudan. Located in Juba, the school has grown from a small institution into one of the most respected nursery, elementary, and secondary schools in the region.
+                Bornwell Academy was founded with a vision to provide quality education to the children of South Sudan.
+                Located in Juba, the school has grown from a small institution into one of the most respected nursery,
+                elementary, and secondary schools in the region.
               </p>
               <p className="text-muted-foreground">
-                Over the years, we have remained committed to academic excellence, discipline, and the holistic development of every child who walks through our doors. Our campus features modern classrooms named after the states of South Sudan, symbolizing our commitment to national unity and diversity.
+                Over the years, we have remained committed to academic excellence, discipline, and the holistic
+                development of every child who walks through our doors. Our campus features modern classrooms named
+                after the states of South Sudan, symbolizing our commitment to national unity and diversity.
               </p>
             </div>
             <img src={compoundImg} alt="Bornwell Academy campus" className="rounded-2xl shadow-xl" loading="lazy" />
@@ -477,7 +535,8 @@ const Index = () => {
                 <Badge>Our Mission</Badge>
               </div>
               <p className="text-muted-foreground">
-                To provide a safe, nurturing, and academically rigorous environment where every child can discover their potential, develop strong character, and become a responsible citizen and future leader.
+                To provide a safe, nurturing, and academically rigorous environment where every child can discover their
+                potential, develop strong character, and become a responsible citizen and future leader.
               </p>
             </div>
             <div className="rounded-2xl border border-border bg-card p-8 shadow-sm">
@@ -488,7 +547,8 @@ const Index = () => {
                 <Badge variant="secondary">Our Vision</Badge>
               </div>
               <p className="text-muted-foreground">
-                To be the leading center of academic excellence in South Sudan, producing well-rounded graduates who contribute positively to their communities and the world.
+                To be the leading center of academic excellence in South Sudan, producing well-rounded graduates who
+                contribute positively to their communities and the world.
               </p>
             </div>
           </div>
@@ -504,11 +564,16 @@ const Index = () => {
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {values.map((v) => (
-              <div key={v.title} className="rounded-2xl border border-border bg-card p-6 text-center shadow-sm transition-all hover:-translate-y-1 hover:shadow-md">
+              <div
+                key={v.title}
+                className="rounded-2xl border border-border bg-card p-6 text-center shadow-sm transition-all hover:-translate-y-1 hover:shadow-md"
+              >
                 <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-gold/20 text-gold">
                   <v.icon className="h-7 w-7" />
                 </div>
-                <Badge variant="outline" className="mb-2 text-xs">{v.badge}</Badge>
+                <Badge variant="outline" className="mb-2 text-xs">
+                  {v.badge}
+                </Badge>
                 <h3 className="mb-2 font-heading text-lg font-bold text-foreground">{v.title}</h3>
                 <p className="text-sm text-muted-foreground">{v.desc}</p>
               </div>
@@ -521,17 +586,34 @@ const Index = () => {
       <section className="section-padding bg-muted">
         <div className="container-main">
           <div className="grid items-center gap-10 md:grid-cols-2">
-            <img src={dormImg} alt="Boarding dormitories at Bornwell Academy" className="rounded-2xl shadow-xl" loading="lazy" />
+            <img
+              src={dormImg}
+              alt="Boarding dormitories at Bornwell Academy"
+              className="rounded-2xl shadow-xl"
+              loading="lazy"
+            />
             <div>
               <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/20">Why Choose Us</Badge>
               <h2 className="mb-4 font-heading text-3xl font-bold text-foreground">Why Choose Bornwell?</h2>
               <ul className="space-y-3 text-muted-foreground">
-                <li className="flex items-start gap-3"><Award className="mt-1 h-5 w-5 text-gold" /> Qualified and experienced teaching staff</li>
-                <li className="flex items-start gap-3"><Award className="mt-1 h-5 w-5 text-gold" /> Modern science and computer laboratories</li>
-                <li className="flex items-start gap-3"><Award className="mt-1 h-5 w-5 text-gold" /> Safe and supportive boarding facilities</li>
-                <li className="flex items-start gap-3"><Award className="mt-1 h-5 w-5 text-gold" /> Focus on character development and discipline</li>
-                <li className="flex items-start gap-3"><Award className="mt-1 h-5 w-5 text-gold" /> Diverse and inclusive community</li>
-                <li className="flex items-start gap-3"><Award className="mt-1 h-5 w-5 text-gold" /> Strong academic track record</li>
+                <li className="flex items-start gap-3">
+                  <Award className="mt-1 h-5 w-5 text-gold" /> Qualified and experienced teaching staff
+                </li>
+                <li className="flex items-start gap-3">
+                  <Award className="mt-1 h-5 w-5 text-gold" /> Modern science and computer laboratories
+                </li>
+                <li className="flex items-start gap-3">
+                  <Award className="mt-1 h-5 w-5 text-gold" /> Safe and supportive boarding facilities
+                </li>
+                <li className="flex items-start gap-3">
+                  <Award className="mt-1 h-5 w-5 text-gold" /> Focus on character development and discipline
+                </li>
+                <li className="flex items-start gap-3">
+                  <Award className="mt-1 h-5 w-5 text-gold" /> Diverse and inclusive community
+                </li>
+                <li className="flex items-start gap-3">
+                  <Award className="mt-1 h-5 w-5 text-gold" /> Strong academic track record
+                </li>
               </ul>
             </div>
           </div>
@@ -553,7 +635,10 @@ const Index = () => {
         <div className="container-main">
           <div className="grid gap-8 md:grid-cols-3">
             {leaders.map((leader) => (
-              <div key={leader.name} className="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:-translate-y-2 hover:shadow-xl">
+              <div
+                key={leader.name}
+                className="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:-translate-y-2 hover:shadow-xl"
+              >
                 {/* Image with overlay badge */}
                 <div className="relative aspect-[4/5] overflow-hidden">
                   <img
@@ -564,7 +649,9 @@ const Index = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4">
-                    <Badge variant={leader.badgeVariant} className="mb-2">{leader.badge}</Badge>
+                    <Badge variant={leader.badgeVariant} className="mb-2">
+                      {leader.badge}
+                    </Badge>
                     <h3 className="font-heading text-xl font-bold text-primary-foreground">{leader.name}</h3>
                     <p className="text-sm font-medium text-gold">{leader.title}</p>
                   </div>
@@ -576,7 +663,9 @@ const Index = () => {
                       <Award className="h-4 w-4 text-gold" />
                       <span className="text-sm font-medium text-foreground">{leader.experience}</span>
                     </div>
-                    <Badge variant="outline" className="text-xs">{leader.specialty}</Badge>
+                    <Badge variant="outline" className="text-xs">
+                      {leader.specialty}
+                    </Badge>
                   </div>
                   <p className="text-sm text-muted-foreground leading-relaxed">{leader.bio}</p>
                 </div>
@@ -590,7 +679,9 @@ const Index = () => {
       <section id="registration" className="bg-hero py-16 md:py-24">
         <div className="container-main text-center">
           <Badge className="mb-4 bg-gold/20 text-gold hover:bg-gold/30">Enroll Now</Badge>
-          <h2 className="mb-4 font-heading text-4xl font-bold text-primary-foreground md:text-5xl">Student Registration</h2>
+          <h2 className="mb-4 font-heading text-4xl font-bold text-primary-foreground md:text-5xl">
+            Student Registration
+          </h2>
           <p className="mx-auto max-w-2xl text-lg text-primary-foreground/80">
             Start your child's journey at Bornwell Academy. Fill out the form below.
           </p>
@@ -602,9 +693,24 @@ const Index = () => {
         <div className="container-main">
           <div className="mb-10 grid gap-6 md:grid-cols-3">
             {[
-              { level: "Nursery", ages: "Ages 3–5", desc: "Birth certificate and immunization records required.", badge: "Ages 3-5" },
-              { level: "Elementary", ages: "Ages 6–12", desc: "Previous school report card and birth certificate required.", badge: "Ages 6-12" },
-              { level: "Secondary", ages: "Ages 13–18", desc: "Transfer letter, report card, and birth certificate required.", badge: "Ages 13-18" },
+              {
+                level: "Nursery",
+                ages: "Ages 3–5",
+                desc: "Birth certificate and immunization records required.",
+                badge: "Ages 3-5",
+              },
+              {
+                level: "Elementary",
+                ages: "Ages 6–12",
+                desc: "Previous school report card and birth certificate required.",
+                badge: "Ages 6-12",
+              },
+              {
+                level: "Secondary",
+                ages: "Ages 13–18",
+                desc: "Transfer letter, report card, and birth certificate required.",
+                badge: "Ages 13-18",
+              },
             ].map((l) => (
               <div key={l.level} className="rounded-2xl border border-border bg-card p-6 shadow-sm">
                 <div className="mb-3 flex items-center justify-between">
@@ -637,7 +743,14 @@ const Index = () => {
                   <label className={labelClass}>Student Full Name *</label>
                   <div className="relative">
                     <User className="absolute left-3 top-3.5 h-4 w-4 text-muted-foreground" />
-                    <input name="studentName" value={regForm.studentName} onChange={handleRegChange} placeholder="Full name" className={inputClass} maxLength={100} />
+                    <input
+                      name="studentName"
+                      value={regForm.studentName}
+                      onChange={handleRegChange}
+                      placeholder="Full name"
+                      className={inputClass}
+                      maxLength={100}
+                    />
                   </div>
                 </div>
                 {/* DOB */}
@@ -645,11 +758,11 @@ const Index = () => {
                   <label className={labelClass}>Date of Birth *</label>
                   <div className="relative">
                     <Calendar className="absolute left-3 top-3.5 h-4 w-4 text-muted-foreground pointer-events-none" />
-                    <input 
-                      type="date" 
-                      name="dob" 
-                      value={regForm.dob} 
-                      onChange={handleRegChange} 
+                    <input
+                      type="date"
+                      name="dob"
+                      value={regForm.dob}
+                      onChange={handleRegChange}
                       className={`${inputClass} pr-4 box-border`}
                     />
                   </div>
@@ -684,7 +797,14 @@ const Index = () => {
                   <label className={labelClass}>Parent/Guardian Name *</label>
                   <div className="relative">
                     <User className="absolute left-3 top-3.5 h-4 w-4 text-muted-foreground" />
-                    <input name="parentName" value={regForm.parentName} onChange={handleRegChange} placeholder="Parent/Guardian name" className={inputClass} maxLength={100} />
+                    <input
+                      name="parentName"
+                      value={regForm.parentName}
+                      onChange={handleRegChange}
+                      placeholder="Parent/Guardian name"
+                      className={inputClass}
+                      maxLength={100}
+                    />
                   </div>
                 </div>
                 {/* Phone */}
@@ -692,7 +812,14 @@ const Index = () => {
                   <label className={labelClass}>Phone Number *</label>
                   <div className="relative">
                     <Phone className="absolute left-3 top-3.5 h-4 w-4 text-muted-foreground" />
-                    <input name="phone" value={regForm.phone} onChange={handleRegChange} placeholder="+211 xxx xxx xxx" className={inputClass} maxLength={20} />
+                    <input
+                      name="phone"
+                      value={regForm.phone}
+                      onChange={handleRegChange}
+                      placeholder="+211 xxx xxx xxx"
+                      className={inputClass}
+                      maxLength={20}
+                    />
                   </div>
                 </div>
                 {/* Email */}
@@ -700,7 +827,15 @@ const Index = () => {
                   <label className={labelClass}>Email *</label>
                   <div className="relative">
                     <Mail className="absolute left-3 top-3.5 h-4 w-4 text-muted-foreground" />
-                    <input type="email" name="email" value={regForm.email} onChange={handleRegChange} placeholder="email@example.com" className={inputClass} maxLength={255} />
+                    <input
+                      type="email"
+                      name="email"
+                      value={regForm.email}
+                      onChange={handleRegChange}
+                      placeholder="email@example.com"
+                      className={inputClass}
+                      maxLength={255}
+                    />
                   </div>
                 </div>
                 {/* Address */}
@@ -708,7 +843,14 @@ const Index = () => {
                   <label className={labelClass}>Address *</label>
                   <div className="relative">
                     <MapPin className="absolute left-3 top-3.5 h-4 w-4 text-muted-foreground" />
-                    <input name="address" value={regForm.address} onChange={handleRegChange} placeholder="Home address" className={inputClass} maxLength={200} />
+                    <input
+                      name="address"
+                      value={regForm.address}
+                      onChange={handleRegChange}
+                      placeholder="Home address"
+                      className={inputClass}
+                      maxLength={200}
+                    />
                   </div>
                 </div>
               </div>
@@ -718,7 +860,14 @@ const Index = () => {
                 <label className={labelClass}>Previous School (Optional)</label>
                 <div className="relative">
                   <School className="absolute left-3 top-3.5 h-4 w-4 text-muted-foreground" />
-                  <input name="previousSchool" value={regForm.previousSchool} onChange={handleRegChange} placeholder="Previous school name" className={inputClass} maxLength={150} />
+                  <input
+                    name="previousSchool"
+                    value={regForm.previousSchool}
+                    onChange={handleRegChange}
+                    placeholder="Previous school name"
+                    className={inputClass}
+                    maxLength={150}
+                  />
                 </div>
               </div>
 
@@ -727,11 +876,22 @@ const Index = () => {
                 <label className={labelClass}>Additional Notes (Optional)</label>
                 <div className="relative">
                   <FileText className="absolute left-3 top-3.5 h-4 w-4 text-muted-foreground" />
-                  <textarea name="notes" value={regForm.notes} onChange={handleRegChange} placeholder="Any additional information..." rows={3} className={inputClass + " resize-none"} maxLength={1000} />
+                  <textarea
+                    name="notes"
+                    value={regForm.notes}
+                    onChange={handleRegChange}
+                    placeholder="Any additional information..."
+                    rows={3}
+                    className={inputClass + " resize-none"}
+                    maxLength={1000}
+                  />
                 </div>
               </div>
 
-              <button type="submit" className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3.5 font-body font-semibold text-primary-foreground shadow-md transition-all hover:shadow-lg hover:brightness-110 md:w-auto">
+              <button
+                type="submit"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3.5 font-body font-semibold text-primary-foreground shadow-md transition-all hover:shadow-lg hover:brightness-110 md:w-auto"
+              >
                 <CheckCircle2 className="h-5 w-5" /> Submit Registration
               </button>
             </form>
@@ -759,21 +919,27 @@ const Index = () => {
               <h2 className="mb-6 font-heading text-2xl font-bold text-foreground">Get in Touch</h2>
               <div className="space-y-5">
                 <div className="flex items-start gap-4 rounded-xl border border-border bg-card p-5 shadow-sm">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground"><Phone className="h-5 w-5" /></div>
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                    <Phone className="h-5 w-5" />
+                  </div>
                   <div>
                     <p className="font-medium text-foreground">Phone</p>
-                    <p className="text-sm text-muted-foreground">+211 912 345 678</p>
+                    <p className="text-sm text-muted-foreground">+211 911 315 000</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4 rounded-xl border border-border bg-card p-5 shadow-sm">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary text-secondary-foreground"><Mail className="h-5 w-5" /></div>
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary text-secondary-foreground">
+                    <Mail className="h-5 w-5" />
+                  </div>
                   <div>
                     <p className="font-medium text-foreground">Email</p>
-                    <p className="text-sm text-muted-foreground">info@bornwellacademy.com</p>
+                    <p className="text-sm text-muted-foreground">bornwellacademy2023@gmail.com</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4 rounded-xl border border-border bg-card p-5 shadow-sm">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gold text-gold-foreground"><MapPin className="h-5 w-5" /></div>
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gold text-gold-foreground">
+                    <MapPin className="h-5 w-5" />
+                  </div>
                   <div>
                     <p className="font-medium text-foreground">Location</p>
                     <p className="text-sm text-muted-foreground">Juba, South Sudan</p>
@@ -783,7 +949,7 @@ const Index = () => {
 
               {/* WhatsApp */}
               <a
-                href="https://wa.me/211912345678"
+                href="https://wa.me/+211913113000"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-6 inline-flex items-center gap-2 rounded-lg bg-secondary px-6 py-3 font-body font-semibold text-secondary-foreground transition-all hover:brightness-110"
@@ -809,7 +975,9 @@ const Index = () => {
             {/* Contact Form */}
             <div className="rounded-2xl border border-border bg-card p-6 shadow-sm md:p-10">
               <div className="mb-6">
-                <Badge variant="outline" className="mb-2">Send Message</Badge>
+                <Badge variant="outline" className="mb-2">
+                  Send Message
+                </Badge>
                 <h2 className="font-heading text-2xl font-bold text-foreground">Send a Message</h2>
               </div>
               <form onSubmit={handleContactSubmit} className="space-y-5">
@@ -817,31 +985,64 @@ const Index = () => {
                   <label className="mb-1 block font-body text-sm font-medium text-foreground">Your Name *</label>
                   <div className="relative">
                     <User className="absolute left-3 top-3.5 h-4 w-4 text-muted-foreground" />
-                    <input name="name" value={contactForm.name} onChange={handleContactChange} placeholder="Your full name" className={inputClass} maxLength={100} />
+                    <input
+                      name="name"
+                      value={contactForm.name}
+                      onChange={handleContactChange}
+                      placeholder="Your full name"
+                      className={inputClass}
+                      maxLength={100}
+                    />
                   </div>
                 </div>
                 <div>
                   <label className="mb-1 block font-body text-sm font-medium text-foreground">Email *</label>
                   <div className="relative">
                     <Mail className="absolute left-3 top-3.5 h-4 w-4 text-muted-foreground" />
-                    <input type="email" name="email" value={contactForm.email} onChange={handleContactChange} placeholder="email@example.com" className={inputClass} maxLength={255} />
+                    <input
+                      type="email"
+                      name="email"
+                      value={contactForm.email}
+                      onChange={handleContactChange}
+                      placeholder="email@example.com"
+                      className={inputClass}
+                      maxLength={255}
+                    />
                   </div>
                 </div>
                 <div>
                   <label className="mb-1 block font-body text-sm font-medium text-foreground">Phone (Optional)</label>
                   <div className="relative">
                     <Phone className="absolute left-3 top-3.5 h-4 w-4 text-muted-foreground" />
-                    <input name="phone" value={contactForm.phone} onChange={handleContactChange} placeholder="+211 xxx xxx xxx" className={inputClass} maxLength={20} />
+                    <input
+                      name="phone"
+                      value={contactForm.phone}
+                      onChange={handleContactChange}
+                      placeholder="+211 xxx xxx xxx"
+                      className={inputClass}
+                      maxLength={20}
+                    />
                   </div>
                 </div>
                 <div>
                   <label className="mb-1 block font-body text-sm font-medium text-foreground">Message *</label>
                   <div className="relative">
                     <MessageSquare className="absolute left-3 top-3.5 h-4 w-4 text-muted-foreground" />
-                    <textarea name="message" value={contactForm.message} onChange={handleContactChange} placeholder="How can we help you?" rows={4} className={inputClass + " resize-none"} maxLength={1000} />
+                    <textarea
+                      name="message"
+                      value={contactForm.message}
+                      onChange={handleContactChange}
+                      placeholder="How can we help you?"
+                      rows={4}
+                      className={inputClass + " resize-none"}
+                      maxLength={1000}
+                    />
                   </div>
                 </div>
-                <button type="submit" className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3.5 font-body font-semibold text-primary-foreground shadow-md transition-all hover:shadow-lg hover:brightness-110">
+                <button
+                  type="submit"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3.5 font-body font-semibold text-primary-foreground shadow-md transition-all hover:shadow-lg hover:brightness-110"
+                >
                   <Send className="h-5 w-5" /> Send Message
                 </button>
               </form>
