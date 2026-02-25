@@ -28,7 +28,7 @@ const toastVariants = cva(
     variants: {
       variant: {
         default: "border bg-background text-foreground",
-        destructive: "destructive group border-destructive bg-destructive text-destructive-foreground",
+        destructive: "destructive group border border-destructive bg-background text-foreground",
       },
     },
     defaultVariants: {
@@ -78,6 +78,13 @@ const ToastClose = React.forwardRef<
 ));
 ToastClose.displayName = ToastPrimitives.Close.displayName;
 
+const ToastIcon = React.forwardRef<React.ElementRef<"div">, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn("mr-3 flex h-5 w-5 shrink-0 items-center justify-center", className)} {...props} />
+  ),
+);
+ToastIcon.displayName = "ToastIcon";
+
 const ToastTitle = React.forwardRef<
   React.ElementRef<typeof ToastPrimitives.Title>,
   React.ComponentPropsWithoutRef<typeof ToastPrimitives.Title>
@@ -94,7 +101,9 @@ const ToastDescription = React.forwardRef<
 ));
 ToastDescription.displayName = ToastPrimitives.Description.displayName;
 
-type ToastProps = React.ComponentPropsWithoutRef<typeof Toast>;
+type ToastProps = React.ComponentPropsWithoutRef<typeof Toast> & {
+  icon?: React.ReactNode;
+};
 
 type ToastActionElement = React.ReactElement<typeof ToastAction>;
 
@@ -108,4 +117,5 @@ export {
   ToastDescription,
   ToastClose,
   ToastAction,
+  ToastIcon,
 };

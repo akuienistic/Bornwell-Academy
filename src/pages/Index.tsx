@@ -160,23 +160,26 @@ const Index = () => {
     const missing = required.filter((f) => !regForm[f as keyof typeof regForm].trim());
     if (missing.length > 0) {
       toast({
-        title: "⚠️ Missing Fields",
+        title: "Missing Fields",
         description: "Please fill in all required fields.",
         variant: "destructive",
+        icon: <AlertCircle className="h-5 w-5 text-destructive" />,
       });
       return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(regForm.email)) {
       toast({ 
-        title: "⚠️ Invalid Email",
+        title: "Invalid Email",
         description: "Please enter a valid email address.", 
-        variant: "destructive" 
+        variant: "destructive",
+        icon: <AlertCircle className="h-5 w-5 text-destructive" />,
       });
       return;
     }
     toast({ 
-      title: "✅ Registration Submitted!",
-      description: "Thank you! We will contact you shortly." 
+      title: "Registration Submitted!",
+      description: "Thank you! We will contact you shortly.",
+      icon: <CheckCircle2 className="h-5 w-5 text-green-500" />,
     });
     setRegForm({
       studentName: "",
@@ -196,23 +199,26 @@ const Index = () => {
     e.preventDefault();
     if (!contactForm.name.trim() || !contactForm.email.trim() || !contactForm.message.trim()) {
       toast({ 
-        title: "⚠️ Missing Fields",
+        title: "Missing Fields",
         description: "Please fill in all required fields.", 
-        variant: "destructive" 
+        variant: "destructive",
+        icon: <AlertCircle className="h-5 w-5 text-destructive" />,
       });
       return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactForm.email)) {
       toast({ 
-        title: "⚠️ Invalid Email",
+        title: "Invalid Email",
         description: "Please enter a valid email address.", 
-        variant: "destructive" 
+        variant: "destructive",
+        icon: <AlertCircle className="h-5 w-5 text-destructive" />,
       });
       return;
     }
     toast({ 
-      title: "✉️ Message Sent!",
-      description: "Thank you for contacting us. We'll respond shortly." 
+      title: "Message Sent!",
+      description: "Thank you for contacting us. We'll respond shortly.",
+      icon: <CheckCircle2 className="h-5 w-5 text-green-500" />,
     });
     setContactForm({ name: "", email: "", phone: "", message: "" });
   };

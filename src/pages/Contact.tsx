@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { User, Mail, Phone, MapPin, MessageSquare, Send, CheckCircle2 } from "lucide-react";
+import { User, Mail, Phone, MapPin, MessageSquare, Send, CheckCircle2, AlertCircle } from "lucide-react";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -13,14 +13,28 @@ const Contact = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
-      toast({ title: "Missing Fields", description: "Please fill in all required fields.", variant: "destructive" });
+      toast({ 
+        title: "Missing Fields", 
+        description: "Please fill in all required fields.", 
+        variant: "destructive",
+        icon: <AlertCircle className="h-5 w-5 text-destructive" />,
+      });
       return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-      toast({ title: "Invalid Email", description: "Please enter a valid email address.", variant: "destructive" });
+      toast({ 
+        title: "Invalid Email", 
+        description: "Please enter a valid email address.", 
+        variant: "destructive",
+        icon: <AlertCircle className="h-5 w-5 text-destructive" />,
+      });
       return;
     }
-    toast({ title: "Message Sent!", description: "Thank you for contacting us. We'll respond shortly." });
+    toast({ 
+      title: "Message Sent!", 
+      description: "Thank you for contacting us. We'll respond shortly.",
+      icon: <CheckCircle2 className="h-5 w-5 text-green-500" />,
+    });
     setForm({ name: "", email: "", phone: "", message: "" });
   };
 

@@ -23,15 +23,25 @@ const Registration = () => {
         title: "Missing Fields",
         description: "Please fill in all required fields.",
         variant: "destructive",
+        icon: <AlertCircle className="h-5 w-5 text-destructive" />,
       });
       return;
     }
     // Email validation
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-      toast({ title: "Invalid Email", description: "Please enter a valid email address.", variant: "destructive" });
+      toast({ 
+        title: "Invalid Email", 
+        description: "Please enter a valid email address.", 
+        variant: "destructive",
+        icon: <AlertCircle className="h-5 w-5 text-destructive" />,
+      });
       return;
     }
-    toast({ title: "Registration Submitted!", description: "Thank you! We will contact you shortly." });
+    toast({ 
+      title: "Registration Submitted!", 
+      description: "Thank you! We will contact you shortly.",
+      icon: <CheckCircle2 className="h-5 w-5 text-green-500" />,
+    });
     setForm({ studentName: "", dob: "", gender: "", level: "", parentName: "", phone: "", email: "", address: "", previousSchool: "", notes: "" });
   };
 
