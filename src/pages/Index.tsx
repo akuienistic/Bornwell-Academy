@@ -109,20 +109,29 @@ const leaders = [
     bio: "A visionary leader who established Bornwell Academy with the mission of providing quality education to the children of South Sudan. His dedication has transformed the school into one of Juba's most respected institutions.",
     image: founderImg,
     badge: "Founder",
+    badgeVariant: "default" as const,
+    experience: "15+ Years",
+    specialty: "Educational Leadership",
   },
   {
     name: "Board Chairlady",
     title: "Chairlady, Board of Directors",
     bio: "An advocate for quality education and child development, she provides strategic oversight to ensure Bornwell Academy maintains the highest standards of academic and organizational excellence.",
     image: chairladyImg,
-    badge: "Board",
+    badge: "Board Chair",
+    badgeVariant: "secondary" as const,
+    experience: "12+ Years",
+    specialty: "Strategic Planning",
   },
   {
     name: "School Principal",
     title: "Principal",
     bio: "An experienced educator leading the academic and administrative operations of Bornwell Academy. He is committed to fostering a culture of discipline, excellence, and continuous improvement.",
     image: principalImg,
-    badge: "Administration",
+    badge: "Principal",
+    badgeVariant: "default" as const,
+    experience: "10+ Years",
+    specialty: "Academic Excellence",
   },
 ];
 
@@ -391,12 +400,18 @@ const Index = () => {
                 <p className="mt-3 font-medium text-foreground">— Parent, Class of 2025</p>
               </div>
             </div>
-            <img
-              src={studentSpeakingImg}
-              alt="Student speaking at Bornwell Academy"
-              className="rounded-2xl shadow-xl"
-              loading="lazy"
-            />
+            <div className="relative">
+              <img
+                src={studentSpeakingImg}
+                alt="Abraham Teme, Eritrean student speaking at Bornwell Academy"
+                className="rounded-2xl shadow-xl"
+                loading="lazy"
+              />
+              <div className="absolute -bottom-3 -right-3 rounded-xl bg-card p-3 shadow-lg md:-bottom-4 md:-right-4">
+                <p className="font-heading text-sm font-bold text-primary">Abraham Teme</p>
+                <p className="text-xs text-muted-foreground">Eritrean National</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -519,20 +534,32 @@ const Index = () => {
         <div className="container-main">
           <div className="grid gap-8 md:grid-cols-3">
             {leaders.map((leader) => (
-              <div key={leader.name} className="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg">
-                <div className="aspect-[3/4] overflow-hidden">
+              <div key={leader.name} className="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:-translate-y-2 hover:shadow-xl">
+                {/* Image with overlay badge */}
+                <div className="relative aspect-[4/5] overflow-hidden">
                   <img
                     src={leader.image}
                     alt={leader.name}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                     loading="lazy"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <Badge variant={leader.badgeVariant} className="mb-2">{leader.badge}</Badge>
+                    <h3 className="font-heading text-xl font-bold text-primary-foreground">{leader.name}</h3>
+                    <p className="text-sm font-medium text-gold">{leader.title}</p>
+                  </div>
                 </div>
+                {/* Info section */}
                 <div className="p-6">
-                  <Badge variant="outline" className="mb-2">{leader.badge}</Badge>
-                  <h3 className="font-heading text-xl font-bold text-foreground">{leader.name}</h3>
-                  <p className="mb-3 text-sm font-medium text-gold">{leader.title}</p>
-                  <p className="text-sm text-muted-foreground">{leader.bio}</p>
+                  <div className="mb-4 flex items-center justify-between border-b border-border pb-4">
+                    <div className="flex items-center gap-2">
+                      <Award className="h-4 w-4 text-gold" />
+                      <span className="text-sm font-medium text-foreground">{leader.experience}</span>
+                    </div>
+                    <Badge variant="outline" className="text-xs">{leader.specialty}</Badge>
+                  </div>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{leader.bio}</p>
                 </div>
               </div>
             ))}

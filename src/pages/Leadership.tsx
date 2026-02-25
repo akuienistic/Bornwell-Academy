@@ -4,7 +4,7 @@ import chairladyImg from "@/assets/chairlady.jpg";
 
 const leaders = [
   {
-    name: "Mr. Bornwell Akuien",
+    name: "Mr. Deng Athoi",
     title: "Founder & Director",
     bio: "A visionary leader who established Bornwell Academy with the mission of providing quality education to the children of South Sudan. His dedication has transformed the school into one of Juba's most respected institutions.",
     image: founderImg,
@@ -49,7 +49,7 @@ const Leadership = () => (
               </div>
               <div className="p-6">
                 <h3 className="font-heading text-xl font-bold text-foreground">{leader.name}</h3>
-                <p className="mb-3 text-sm font-medium text-gold">{leader.title}</p>
+                <p className="mb-3 text-sm font-medium text-white">{leader.title}</p>
                 <p className="text-sm text-muted-foreground">{leader.bio}</p>
               </div>
             </div>
