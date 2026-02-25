@@ -18,7 +18,15 @@
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 
     <style>
-      /* Clean Loader Styles */
+      /* Premium Loader Styles */
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+      
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
       #loader {
         position: fixed;
         inset: 0;
@@ -27,118 +35,350 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        background: linear-gradient(135deg, #1a2f3d 0%, #243e4f 50%, #2d5a52 100%);
-        transition: opacity 0.6s ease-out, visibility 0.6s ease-out;
+        background: linear-gradient(135deg, #0f1c24 0%, #1a3342 40%, #1e4a4a 100%);
+        overflow: hidden;
+        transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
       }
+      
       #loader.hidden {
         opacity: 0;
         visibility: hidden;
       }
+      
+      /* Animated background particles */
+      .loader-particles {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+      
+      .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: rgba(212, 168, 83, 0.6);
+        border-radius: 50%;
+        animation: particleFloat 8s infinite ease-in-out;
+      }
+      
+      .particle:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; }
+      .particle:nth-child(2) { left: 20%; top: 80%; animation-delay: 1s; }
+      .particle:nth-child(3) { left: 30%; top: 40%; animation-delay: 2s; }
+      .particle:nth-child(4) { left: 50%; top: 10%; animation-delay: 0.5s; }
+      .particle:nth-child(5) { left: 60%; top: 70%; animation-delay: 1.5s; }
+      .particle:nth-child(6) { left: 70%; top: 30%; animation-delay: 2.5s; }
+      .particle:nth-child(7) { left: 80%; top: 60%; animation-delay: 0.8s; }
+      .particle:nth-child(8) { left: 90%; top: 50%; animation-delay: 1.8s; }
+      .particle:nth-child(9) { left: 15%; top: 55%; animation-delay: 3s; }
+      .particle:nth-child(10) { left: 85%; top: 85%; animation-delay: 2.2s; }
+      
+      @keyframes particleFloat {
+        0%, 100% { 
+          transform: translateY(0) scale(1);
+          opacity: 0.3;
+        }
+        50% { 
+          transform: translateY(-30px) scale(1.5);
+          opacity: 0.8;
+        }
+      }
+      
+      /* Main content */
       .loader-content {
+        position: relative;
+        z-index: 10;
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 1.5rem;
       }
-      .loader-logo-wrapper {
+      
+      /* Logo container with glow */
+      .loader-logo-container {
         position: relative;
-        width: 120px;
-        height: 120px;
+        width: 140px;
+        height: 140px;
         display: flex;
         align-items: center;
         justify-content: center;
       }
-      .loader-logo {
-        width: 100px;
-        height: 100px;
-        object-fit: contain;
+      
+      /* Pulsing glow effect */
+      .loader-glow {
+        position: absolute;
+        width: 160px;
+        height: 160px;
+        background: radial-gradient(circle, rgba(212, 168, 83, 0.4) 0%, transparent 70%);
         border-radius: 50%;
-        animation: logoFloat 2s ease-in-out infinite;
-        filter: drop-shadow(0 4px 20px rgba(212, 168, 83, 0.3));
+        animation: glowPulse 2s ease-in-out infinite;
       }
-      .loader-ring {
+      
+      @keyframes glowPulse {
+        0%, 100% { transform: scale(1); opacity: 0.5; }
+        50% { transform: scale(1.2); opacity: 0.8; }
+      }
+      
+      /* Multiple rotating rings */
+      .loader-ring-outer {
+        position: absolute;
+        width: 140px;
+        height: 140px;
+        border: 2px solid transparent;
+        border-top-color: #d4a853;
+        border-right-color: rgba(212, 168, 83, 0.5);
+        border-radius: 50%;
+        animation: ringRotate 2s linear infinite;
+      }
+      
+      .loader-ring-middle {
         position: absolute;
         width: 120px;
         height: 120px;
-        border: 3px solid transparent;
-        border-top-color: #d4a853;
-        border-radius: 50%;
-        animation: ringSpin 1.2s linear infinite;
-      }
-      .loader-ring::before {
-        content: '';
-        position: absolute;
-        inset: 6px;
         border: 2px solid transparent;
-        border-top-color: rgba(212, 168, 83, 0.5);
+        border-bottom-color: rgba(212, 168, 83, 0.7);
+        border-left-color: rgba(212, 168, 83, 0.3);
         border-radius: 50%;
-        animation: ringSpin 1.8s linear infinite reverse;
+        animation: ringRotate 1.5s linear infinite reverse;
       }
-      @keyframes logoFloat {
-        0%, 100% { transform: translateY(0) scale(1); }
-        50% { transform: translateY(-5px) scale(1.02); }
+      
+      .loader-ring-inner {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        border: 1px solid transparent;
+        border-top-color: rgba(212, 168, 83, 0.4);
+        border-radius: 50%;
+        animation: ringRotate 1s linear infinite;
       }
-      @keyframes ringSpin {
+      
+      @keyframes ringRotate {
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
       }
-      .loader-text {
+      
+      /* Logo image */
+      .loader-logo {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 3px solid rgba(212, 168, 83, 0.8);
+        box-shadow: 0 0 30px rgba(212, 168, 83, 0.5);
+        animation: logoFloat 3s ease-in-out infinite;
+      }
+      
+      @keyframes logoFloat {
+        0%, 100% { transform: translateY(0) rotate(0deg); }
+        25% { transform: translateY(-3px) rotate(1deg); }
+        75% { transform: translateY(3px) rotate(-1deg); }
+      }
+      
+      /* Text styling */
+      .loader-text-container {
+        text-align: center;
+      }
+      
+      .loader-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 2rem;
+        font-weight: 700;
         color: #faf5e8;
+        letter-spacing: 0.05em;
+        text-shadow: 0 2px 10px rgba(212, 168, 83, 0.3);
+        animation: titleReveal 1s ease-out forwards;
+        opacity: 0;
+        animation-delay: 0.3s;
+      }
+      
+      @keyframes titleReveal {
+        from { 
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to { 
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      .loader-subtitle {
         font-family: 'Poppins', sans-serif;
-        font-size: 1.5rem;
-        font-weight: 600;
-        letter-spacing: 0.1em;
+        font-size: 0.75rem;
+        font-weight: 400;
+        color: #d4a853;
+        letter-spacing: 0.3em;
         text-transform: uppercase;
-        animation: textPulse 2s ease-in-out infinite;
-      }
-      @keyframes textPulse {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.7; }
-      }
-      .loader-progress {
-        width: 200px;
-        height: 3px;
-        background: rgba(250, 245, 232, 0.1);
-        border-radius: 3px;
-        overflow: hidden;
         margin-top: 0.5rem;
+        animation: subtitleReveal 1s ease-out forwards;
+        opacity: 0;
+        animation-delay: 0.6s;
       }
+      
+      @keyframes subtitleReveal {
+        from { 
+          opacity: 0;
+          transform: translateY(5px);
+        }
+        to { 
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      /* Progress bar */
+      .loader-progress-container {
+        width: 200px;
+        margin-top: 1rem;
+        animation: fadeIn 1s ease-out forwards;
+        opacity: 0;
+        animation-delay: 0.9s;
+      }
+      
+      @keyframes fadeIn {
+        to { opacity: 1; }
+      }
+      
+      .loader-progress {
+        width: 100%;
+        height: 4px;
+        background: rgba(250, 245, 232, 0.1);
+        border-radius: 4px;
+        overflow: hidden;
+        position: relative;
+      }
+      
       .loader-progress-bar {
-        width: 30%;
+        position: absolute;
+        width: 40%;
         height: 100%;
-        background: linear-gradient(90deg, #d4a853, #e8c068);
-        border-radius: 3px;
+        background: linear-gradient(90deg, transparent, #d4a853, #e8c068, #d4a853, transparent);
+        border-radius: 4px;
         animation: progressSlide 1.5s ease-in-out infinite;
       }
+      
       @keyframes progressSlide {
-        0% { transform: translateX(-100%); }
-        50% { transform: translateX(200%); }
-        100% { transform: translateX(-100%); }
+        0% { left: -40%; }
+        100% { left: 100%; }
       }
-      .loader-tagline {
-        color: rgba(250, 245, 232, 0.6);
+      
+      .loader-progress-text {
         font-family: 'Poppins', sans-serif;
-        font-size: 0.875rem;
-        font-weight: 300;
-        letter-spacing: 0.15em;
-        margin-top: 0.25rem;
+        font-size: 0.65rem;
+        color: rgba(250, 245, 232, 0.5);
+        text-align: center;
+        margin-top: 0.5rem;
+        letter-spacing: 0.1em;
+      }
+      
+      /* Decorative corner elements */
+      .corner-decoration {
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        border: 2px solid rgba(212, 168, 83, 0.2);
+      }
+      
+      .corner-decoration.top-left {
+        top: 20px;
+        left: 20px;
+        border-right: none;
+        border-bottom: none;
+        animation: cornerPulse 3s ease-in-out infinite;
+      }
+      
+      .corner-decoration.top-right {
+        top: 20px;
+        right: 20px;
+        border-left: none;
+        border-bottom: none;
+        animation: cornerPulse 3s ease-in-out infinite 0.5s;
+      }
+      
+      .corner-decoration.bottom-left {
+        bottom: 20px;
+        left: 20px;
+        border-right: none;
+        border-top: none;
+        animation: cornerPulse 3s ease-in-out infinite 1s;
+      }
+      
+      .corner-decoration.bottom-right {
+        bottom: 20px;
+        right: 20px;
+        border-left: none;
+        border-top: none;
+        animation: cornerPulse 3s ease-in-out infinite 1.5s;
+      }
+      
+      @keyframes cornerPulse {
+        0%, 100% { opacity: 0.3; }
+        50% { opacity: 0.7; }
+      }
+      
+      /* Floating icons */
+      .floating-icon {
+        position: absolute;
+        font-size: 1.5rem;
+        opacity: 0.15;
+        animation: iconFloat 6s ease-in-out infinite;
+      }
+      
+      .floating-icon:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
+      .floating-icon:nth-child(2) { top: 25%; right: 15%; animation-delay: 1s; }
+      .floating-icon:nth-child(3) { bottom: 20%; left: 15%; animation-delay: 2s; }
+      .floating-icon:nth-child(4) { bottom: 30%; right: 10%; animation-delay: 3s; }
+      
+      @keyframes iconFloat {
+        0%, 100% { transform: translateY(0) rotate(0deg); }
+        50% { transform: translateY(-15px) rotate(5deg); }
       }
     </style>
   </head>
 
   <body>
-    <!-- Clean Loader Overlay -->
+    <!-- Premium Loader Overlay -->
     <div id="loader">
+      <!-- Animated particles -->
+      <div class="loader-particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+      </div>
+      
+      <!-- Corner decorations -->
+      <div class="corner-decoration top-left"></div>
+      <div class="corner-decoration top-right"></div>
+      <div class="corner-decoration bottom-left"></div>
+      <div class="corner-decoration bottom-right"></div>
+      
+      <!-- Main loader content -->
       <div class="loader-content">
-        <div class="loader-logo-wrapper">
-          <div class="loader-ring"></div>
+        <div class="loader-logo-container">
+          <div class="loader-glow"></div>
+          <div class="loader-ring-outer"></div>
+          <div class="loader-ring-middle"></div>
+          <div class="loader-ring-inner"></div>
           <img src="/school-logo.jpg" alt="Bornwell Academy" class="loader-logo" />
         </div>
-        <div class="loader-text">Bornwell Academy</div>
-        <div class="loader-progress">
-          <div class="loader-progress-bar"></div>
+        
+        <div class="loader-text-container">
+          <div class="loader-title">Bornwell Academy</div>
+          <div class="loader-subtitle">For Quality Education & Excellence</div>
         </div>
-        <div class="loader-tagline">For Quality Education & Excellence</div>
+        
+        <div class="loader-progress-container">
+          <div class="loader-progress">
+            <div class="loader-progress-bar"></div>
+          </div>
+          <div class="loader-progress-text">Loading...</div>
+        </div>
       </div>
     </div>
     

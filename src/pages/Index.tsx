@@ -363,7 +363,7 @@ const Index = () => {
             />
             <div>
               <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/20">Our Facilities</Badge>
-              <h2 className="mb-4 font-heading text-3xl font-bold text-foreground md:text-4xl">Our Campus</h2>
+              <h2 className="mb-4 font-heading text-3xl font-bold text-foreground md:text-4xl">Our Compound</h2>
               <p className="mb-4 text-muted-foreground">
                 Bornwell Academy sits on a spacious and well-maintained campus in Juba, South Sudan. Our facilities
                 include modern classrooms, science and computer labs, boarding dormitories, and ample outdoor space for
