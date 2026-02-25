@@ -1,8 +1,27 @@
-import { Link } from "react-router-dom";
 import { Facebook, Phone, Mail, MapPin } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 80; // Navbar height
+      const elementPosition = element.offsetTop - offset;
+      window.scrollTo({
+        top: elementPosition,
+        behavior: "smooth"
+      });
+    }
+  };
+
+  const footerLinks = [
+    { title: "Home", id: "home" },
+    { title: "About Us", id: "about" },
+    { title: "Leadership", id: "leadership" },
+    { title: "Registration", id: "registration" },
+    { title: "Contact Us", id: "contact" },
+  ];
 
   return (
     <footer className="bg-primary text-primary-foreground">
@@ -12,11 +31,16 @@ const Footer = () => {
           <div>
             <h3 className="mb-4 font-heading text-lg font-bold text-gold">Quick Links</h3>
             <ul className="space-y-2 font-body text-sm">
-              <li><Link to="/" className="text-primary-foreground/80 transition-colors hover:text-gold">Home</Link></li>
-              <li><Link to="/about" className="text-primary-foreground/80 transition-colors hover:text-gold">About Us</Link></li>
-              <li><Link to="/leadership" className="text-primary-foreground/80 transition-colors hover:text-gold">Leadership</Link></li>
-              <li><Link to="/registration" className="text-primary-foreground/80 transition-colors hover:text-gold">Registration</Link></li>
-              <li><Link to="/contact" className="text-primary-foreground/80 transition-colors hover:text-gold">Contact Us</Link></li>
+              {footerLinks.map((link) => (
+                <li key={link.id}>
+                  <button
+                    onClick={() => scrollToSection(link.id)}
+                    className="text-primary-foreground/80 transition-colors hover:text-gold cursor-pointer"
+                  >
+                    {link.title}
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
 

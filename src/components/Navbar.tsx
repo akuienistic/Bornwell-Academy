@@ -1,66 +1,97 @@
-import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { Home, Info, Users, Phone, ClipboardList, Menu, X } from "lucide-react";
 import schoolLogo from "@/assets/school-logo.jpg";
 
 const navItems = [
-  { title: "Home", path: "/", icon: Home },
-  { title: "About Us", path: "/about", icon: Info },
-  { title: "Leadership", path: "/leadership", icon: Users },
-  { title: "Contact Us", path: "/contact", icon: Phone },
+  { title: "Home", id: "home", icon: Home },
+  { title: "About Us", id: "about", icon: Info },
+  { title: "Leadership", id: "leadership", icon: Users },
+  { title: "Contact Us", id: "contact", icon: Phone },
 ];
 
 const Navbar = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const location = useLocation();
+  const [activeSection, setActiveSection] = useState("home");
 
-  const isActive = (path: string) => location.pathname === path;
+  // Track active section on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = navItems.map(item => document.getElementById(item.id));
+      const scrollPosition = window.scrollY + 100;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        if (section && section.offsetTop <= scrollPosition) {
+          setActiveSection(navItems[i].id);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 80; // Navbar height
+      const elementPosition = element.offsetTop - offset;
+      window.scrollTo({
+        top: elementPosition,
+        behavior: "smooth"
+      });
+    }
+    setSidebarOpen(false);
+  };
+
+  const isActive = (id: string) => activeSection === id;
 
   return (
     <>
       <nav className="sticky top-0 z-50 border-b border-border bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80">
         <div className="container-main flex h-16 items-center justify-between md:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2">
+          <a href="#home" onClick={(e) => { e.preventDefault(); scrollToSection("home"); }} className="flex items-center gap-2 cursor-pointer">
             <img src={schoolLogo} alt="Bornwell Academy Logo" className="h-12 w-12 rounded-full object-cover md:h-14 md:w-14" />
             <div className="hidden sm:block">
               <h1 className="font-heading text-lg font-bold leading-tight text-primary md:text-xl">Bornwell Academy</h1>
               <p className="text-xs text-muted-foreground">For Quality Education & Excellence</p>
             </div>
-          </Link>
+          </a>
 
           {/* Desktop Nav - Centered */}
           <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 lg:flex">
             {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`flex items-center gap-2 rounded-lg px-4 py-2 font-body text-sm font-medium transition-colors ${
-                  isActive(item.path)
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className={`flex items-center gap-2 rounded-lg px-4 py-2 font-body text-sm font-medium transition-colors cursor-pointer ${
+                  isActive(item.id)
                     ? "bg-primary text-primary-foreground"
                     : "text-foreground hover:bg-muted"
                 }`}
               >
                 <item.icon className="h-4 w-4" />
                 {item.title}
-              </Link>
+              </button>
             ))}
           </div>
 
           {/* Registration Button - Right Side */}
           <div className="hidden items-center lg:flex">
-            <Link
-              to="/registration"
-              className={`flex items-center gap-2 rounded-lg px-5 py-2.5 font-body text-sm font-semibold transition-all ${
-                isActive("/registration")
+            <button
+              onClick={() => scrollToSection("registration")}
+              className={`flex items-center gap-2 rounded-lg px-5 py-2.5 font-body text-sm font-semibold transition-all cursor-pointer ${
+                isActive("registration")
                   ? "bg-gold text-gold-foreground shadow-lg"
                   : "bg-accent text-accent-foreground shadow-md hover:shadow-lg hover:brightness-110"
               }`}
-              style={{ background: isActive("/registration") ? undefined : "linear-gradient(135deg, hsl(45 95% 55%), hsl(35 90% 50%))" }}
+              style={isActive("registration") ? undefined : { background: "linear-gradient(135deg, hsl(45 95% 55%), hsl(35 90% 50%))" }}
             >
               <ClipboardList className="h-4 w-4" />
               Registration
-            </Link>
+            </button>
           </div>
 
           {/* Mobile menu button */}
@@ -89,20 +120,19 @@ const Navbar = () => {
               </button>
             </div>
             <div className="flex flex-col gap-2">
-              {[...navItems, { title: "Registration", path: "/registration", icon: ClipboardList }].map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  onClick={() => setSidebarOpen(false)}
-                  className={`flex items-center gap-3 rounded-lg px-4 py-3 font-body text-sm font-medium transition-colors ${
-                    isActive(item.path)
+              {[...navItems, { title: "Registration", id: "registration", icon: ClipboardList }].map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`flex items-center gap-3 rounded-lg px-4 py-3 font-body text-sm font-medium transition-colors cursor-pointer text-left ${
+                    isActive(item.id)
                       ? "bg-sidebar-accent text-gold"
                       : "text-primary-foreground hover:bg-sidebar-accent"
                   }`}
                 >
                   <item.icon className="h-5 w-5" />
                   {item.title}
-                </Link>
+                </button>
               ))}
             </div>
           </aside>
