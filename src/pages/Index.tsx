@@ -77,7 +77,7 @@ const news = [
   {
     date: "Feb 2026",
     title: "Founder's Birthday Celebration",
-    desc: "Celebrating the birthday of our beloved founder, Mr. Bornwell Akuien, on February 21st. A day to honor his vision and dedication to education in South Sudan.",
+    desc: "Celebrating the birthday of our beloved founder, Mr. Deng Athoi, on February 21st. A day to honor his vision and dedication to education in South Sudan.",
     badge: "Celebration",
     badgeVariant: "default" as const,
   },
@@ -198,7 +198,7 @@ const Index = () => {
   };
 
   const inputClass =
-    "w-full rounded-lg border border-input bg-background px-4 py-3 pl-11 font-body text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring";
+    "w-full rounded-lg border border-input bg-background px-4 py-3 pl-11 font-body text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring";
   const labelClass = "mb-1 block font-body text-sm font-medium text-foreground";
 
   return (
@@ -644,8 +644,14 @@ const Index = () => {
                 <div>
                   <label className={labelClass}>Date of Birth *</label>
                   <div className="relative">
-                    <Calendar className="absolute left-3 top-3.5 h-4 w-4 text-muted-foreground" />
-                    <input type="date" name="dob" value={regForm.dob} onChange={handleRegChange} className={inputClass} />
+                    <Calendar className="absolute left-3 top-3.5 h-4 w-4 text-muted-foreground pointer-events-none" />
+                    <input 
+                      type="date" 
+                      name="dob" 
+                      value={regForm.dob} 
+                      onChange={handleRegChange} 
+                      className={`${inputClass} pr-4 box-border`}
+                    />
                   </div>
                 </div>
                 {/* Gender */}

@@ -136,10 +136,10 @@ const Footer = () => {
           <p className="mt-1">
             Designed and built by{" "}
             <a
-              href="https://www.linkedin.com/in/simon-akuien-atem-710895290"
+              href="https://web.facebook.com/profile.php?id=61572703111798"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-gold transition-colors hover:underline"
+              className="font-medium text-gold transition-colors"
             >
               Simon Star Tech
             </a>
