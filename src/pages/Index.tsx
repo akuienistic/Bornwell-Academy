@@ -160,12 +160,7 @@ const Index = () => {
     const missing = required.filter((f) => !regForm[f as keyof typeof regForm].trim());
     if (missing.length > 0) {
       toast({
-        title: (
-          <div className="flex items-center gap-2">
-            <AlertTriangle className="h-4 w-4" />
-            <span>Missing Fields</span>
-          </div>
-        ),
+        title: "⚠️ Missing Fields",
         description: "Please fill in all required fields.",
         variant: "destructive",
       });
@@ -173,24 +168,14 @@ const Index = () => {
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(regForm.email)) {
       toast({ 
-        title: (
-          <div className="flex items-center gap-2">
-            <AlertCircle className="h-4 w-4" />
-            <span>Invalid Email</span>
-          </div>
-        ),
+        title: "⚠️ Invalid Email",
         description: "Please enter a valid email address.", 
         variant: "destructive" 
       });
       return;
     }
     toast({ 
-      title: (
-        <div className="flex items-center gap-2">
-          <CheckCircle2 className="h-4 w-4 text-green-500" />
-          <span>Registration Submitted!</span>
-        </div>
-      ),
+      title: "✅ Registration Submitted!",
       description: "Thank you! We will contact you shortly." 
     });
     setRegForm({
@@ -211,12 +196,7 @@ const Index = () => {
     e.preventDefault();
     if (!contactForm.name.trim() || !contactForm.email.trim() || !contactForm.message.trim()) {
       toast({ 
-        title: (
-          <div className="flex items-center gap-2">
-            <AlertTriangle className="h-4 w-4" />
-            <span>Missing Fields</span>
-          </div>
-        ),
+        title: "⚠️ Missing Fields",
         description: "Please fill in all required fields.", 
         variant: "destructive" 
       });
@@ -224,24 +204,14 @@ const Index = () => {
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactForm.email)) {
       toast({ 
-        title: (
-          <div className="flex items-center gap-2">
-            <AlertCircle className="h-4 w-4" />
-            <span>Invalid Email</span>
-          </div>
-        ),
+        title: "⚠️ Invalid Email",
         description: "Please enter a valid email address.", 
         variant: "destructive" 
       });
       return;
     }
     toast({ 
-      title: (
-        <div className="flex items-center gap-2">
-          <Send className="h-4 w-4 text-green-500" />
-          <span>Message Sent!</span>
-        </div>
-      ),
+      title: "✉️ Message Sent!",
       description: "Thank you for contacting us. We'll respond shortly." 
     });
     setContactForm({ name: "", email: "", phone: "", message: "" });
