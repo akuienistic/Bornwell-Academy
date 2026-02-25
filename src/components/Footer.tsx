@@ -50,7 +50,7 @@ const Footer = () => {
               </div>
             </div>
             <p className="mb-4 text-sm text-primary-foreground/70">
-              A premier nursery, elementary, and secondary school in Juba, South Sudan — nurturing academic excellence,
+              A premier nursery, elementary, and secondary school in Juba, South Sudan. Nurturing academic excellence,
               discipline, and holistic development.
             </p>
             <div className="flex gap-3">
