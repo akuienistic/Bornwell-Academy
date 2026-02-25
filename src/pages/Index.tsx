@@ -104,7 +104,7 @@ const values = [
 
 const leaders = [
   {
-    name: "Mr. Bornwell Akuien",
+    name: "Mr. Deng Athoi",
     title: "Founder & Director",
     bio: "A visionary leader who established Bornwell Academy with the mission of providing quality education to the children of South Sudan. His dedication has transformed the school into one of Juba's most respected institutions.",
     image: founderImg,
@@ -247,15 +247,41 @@ const Index = () => {
               </div>
             </div>
             <div className="relative animate-fade-up" style={{ animationDelay: "0.2s" }}>
-              <img
-                src={studentsImg}
-                alt="Bornwell Academy students in uniform"
-                className="rounded-2xl shadow-2xl"
-                loading="lazy"
-              />
-              <div className="absolute -bottom-4 -left-4 rounded-xl bg-card p-4 shadow-lg md:-bottom-6 md:-left-6">
-                <p className="font-heading text-2xl font-bold text-primary">500+</p>
-                <p className="text-xs text-muted-foreground">Students enrolled</p>
+              {/* Decorative elements */}
+              <div className="absolute -left-4 -top-4 h-24 w-24 rounded-full bg-gold/20 blur-2xl" />
+              <div className="absolute -right-4 -bottom-4 h-32 w-32 rounded-full bg-secondary/30 blur-2xl" />
+              
+              {/* Main image container with decorative border */}
+              <div className="relative rounded-2xl border-4 border-gold/30 p-1 shadow-2xl">
+                <img
+                  src={studentsImg}
+                  alt="Bornwell Academy students in uniform"
+                  className="rounded-xl"
+                  loading="lazy"
+                />
+                {/* Gradient overlay at bottom */}
+                <div className="absolute inset-x-0 bottom-0 rounded-b-xl bg-gradient-to-t from-primary/60 to-transparent p-4">
+                  <p className="font-heading text-lg font-bold text-primary-foreground">Excellence in Education</p>
+                  <p className="text-sm text-primary-foreground/80">Building tomorrow's leaders today</p>
+                </div>
+              </div>
+              
+              {/* Floating stat card */}
+              <div className="absolute -bottom-4 -right-4 rounded-xl bg-card p-4 shadow-lg border border-gold/20 md:-bottom-6 md:-right-6">
+                <div className="flex items-center gap-2">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gold/20">
+                    <GraduationCap className="h-5 w-5 text-gold" />
+                  </div>
+                  <div>
+                    <p className="font-heading text-xl font-bold text-primary">500+</p>
+                    <p className="text-xs text-muted-foreground">Students enrolled</p>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Floating badge */}
+              <div className="absolute -right-2 top-4 rounded-lg bg-gold px-3 py-2 shadow-lg md:-right-4">
+                <p className="text-xs font-bold text-gold-foreground">Est. 2015</p>
               </div>
             </div>
           </div>

@@ -63,7 +63,7 @@ const Footer = () => {
                 <Facebook className="h-4 w-4" />
               </a>
               <a
-                href="tiktok.com/@bornwell.academy"
+                href="https://tiktok.com/@bornwell.academy"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex h-9 w-9 items-center justify-center rounded-full bg-sidebar-accent text-primary-foreground transition-colors hover:bg-gold hover:text-gold-foreground"
@@ -113,11 +113,11 @@ const Footer = () => {
             <ul className="space-y-2 font-body text-sm text-primary-foreground/80">
               <li className="flex justify-between">
                 <span>Monday - Friday</span>
-                <span className="text-gold">8:00 AM - 4:00 PM</span>
+                <span className="text-gold">7:30 AM - 5:00 PM</span>
               </li>
               <li className="flex justify-between">
                 <span>Saturday</span>
-                <span className="text-gold">8:00 AM - 12:00 PM</span>
+                <span className="text-primary-foreground/50">Closed</span>
               </li>
               <li className="flex justify-between">
                 <span>Sunday</span>
