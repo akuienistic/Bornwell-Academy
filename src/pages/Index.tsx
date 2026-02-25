@@ -69,24 +69,17 @@ const levels = [
 const news = [
   {
     date: "Feb 2026",
-    title: "Term 1 Examinations Begin",
-    desc: "Students prepare for the first round of assessments this academic year.",
-    badge: "Upcoming",
-    badgeVariant: "secondary" as const,
-  },
-  {
-    date: "Jan 2026",
-    title: "New Computer Lab Opened",
-    desc: "A state-of-the-art computer lab with 30 workstations is now available.",
-    badge: "New",
-    badgeVariant: "default" as const,
-  },
-  {
-    date: "Dec 2025",
-    title: "Annual Prize Giving Day",
-    desc: "Celebrating outstanding academic and extracurricular achievements.",
-    badge: "Event",
+    title: "Passing of Rev. Bishop Nathaniel Garang Anyieth",
+    desc: "A revered leader in the South Sudanese church community, passed away in Nairobi, Kenya on February 24, 2026, after a short illness. His legacy of faith and service will be remembered.",
+    badge: "Memorial",
     badgeVariant: "outline" as const,
+  },
+  {
+    date: "Feb 2026",
+    title: "Founder's Birthday Celebration",
+    desc: "Celebrating the birthday of our beloved founder, Mr. Bornwell Akuien, on February 21st. A day to honor his vision and dedication to education in South Sudan.",
+    badge: "Celebration",
+    badgeVariant: "default" as const,
   },
 ];
 
@@ -384,7 +377,7 @@ const Index = () => {
             <Badge className="mb-4 bg-gold/20 text-gold hover:bg-gold/30">Stay Updated</Badge>
             <h2 className="mb-3 font-heading text-3xl font-bold text-foreground md:text-4xl">Latest News & Events</h2>
           </div>
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2 max-w-4xl mx-auto">
             {news.map((n) => (
               <article
                 key={n.title}
